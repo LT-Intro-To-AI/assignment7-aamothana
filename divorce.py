@@ -65,7 +65,7 @@ print("Number of test: ", len(test_data))
 # for line in td:
 #     print(line)
 
-nn = NeuralNet(54, 20, 1)
+nn = NeuralNet(54, 10, 1)
 
 nn.train(train_data, learning_rate=.1)
 
