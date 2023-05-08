@@ -14,13 +14,13 @@ def parse_line(line: str) -> Tuple[List[float], List[float]]:
         tuple of input list and output list
     """
     tokens = line.split(",")
-    # print(tokens)
-    out = int(tokens[0])
-    # print(out)
+    # print("tokens: ", tokens)
+    out = int(tokens[54])
+    # print("out: ", out)
     output = [0 if out == 1 else 0.5 if out == 2 else 1]
-    # print(output)
+    # print("output: ", output)
 
-    inpt = [float(x) for x in tokens[1:]]
+    inpt = [float(x) for x in tokens[:54]]
     # print(inpt)
     return (inpt, output)
 
@@ -71,7 +71,11 @@ nn.train(train_data, learning_rate=.1)
 
 counter = 0
 for i in nn.test_with_expected(test_data):
-    print(f"desired: {i[1]}, actual: {i[2]}")
-    if(round(i[2], 1) != i[1]):
+    print(i[1])
+    print(f"desired: {i[1][0]}, actual: {i[2][0]}")
+    print(i)
+    if (round(i[2][0], 1) == i[1][0]):
         counter += 1
-    print("accuracy: ", counter/len(test_data))
+
+print(len(test_data))
+print("accuracy: ", counter/len(test_data), "%")
